@@ -30,7 +30,7 @@ services:
     - "8000:80"
 
   redis:
-    image: redis
+    image: r.deso.tech/dockerhub/library/redis
     logging:
       driver: gelf
       options:
@@ -45,4 +45,3 @@ services:
         gelf-address: udp://localhost:12201
     deploy:
       replicas: 10
-

@@ -9,7 +9,7 @@ services:
       - "9090:9090"
 
   node:
-    image: prom/node-exporter
+    image: r.deso.tech/dockerhub/prom/node-exporter
     command: -collector.procfs /host/proc -collector.sysfs /host/proc -collector.filesystem.ignored-mount-points "^(sys|proc|dev|host|etc)($$|/)"
     deploy:
       mode: global
@@ -19,7 +19,7 @@ services:
       - "/:/rootfs"
 
   cadvisor:
-    image: google/cadvisor
+    image: r.deso.tech/dockerhub/google/cadvisor
     deploy:
       mode: global
     volumes:
@@ -27,4 +27,3 @@ services:
       - "/var/run:/var/run"
       - "/sys:/sys"
       - "/var/lib/docker:/var/lib/docker"
-

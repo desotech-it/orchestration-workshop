@@ -2,7 +2,7 @@ version: "2"
 
 services:
   elasticsearch:
-    image: elasticsearch
+    image: r.deso.tech/dockerhub/library/elasticsearch
     # If you need to access ES directly, just uncomment those lines.
     #ports:
     #  - "9200:9200"
@@ -10,14 +10,14 @@ services:
 
   fluentd:
     #build: fluentd
-    image: jpetazzo/fluentd:v0.1
+    image: r.deso.tech/dockerhub/jpetazzo/fluentd:v0.1
     ports:
       - "127.0.0.1:24224:24224"
     depends_on:
       - elasticsearch
 
   kibana:
-    image: kibana
+    image: r.deso.tech/dockerhub/library/kibana
     ports:
       - "5601:5601"
     environment:

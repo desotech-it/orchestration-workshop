@@ -2,31 +2,31 @@ version: "2"
 
 services:
   mon:
-    image: ceph/daemon
+    image: r.deso.tech/dockerhub/ceph/daemon
     command: mon
     environment:
       CEPH_PUBLIC_NETWORK: 10.33.0.0/16
       MON_IP: 10.33.0.2
   osd:
-    image: ceph/daemon
+    image: r.deso.tech/dockerhub/ceph/daemon
     command: osd_directory
     depends_on:
       - mon
-    volumes_from: 
+    volumes_from:
       - mon
     volumes:
       - /var/lib/ceph/osd
   mds:
-    image: ceph/daemon
+    image: r.deso.tech/dockerhub/ceph/daemon
     command: mds
     environment:
       CEPHFS_CREATE: 1
     depends_on:
       - mon
-    volumes_from: 
+    volumes_from:
       - mon
   rgw:
-    image: ceph/daemon
+    image: r.deso.tech/dockerhub/ceph/daemon
     command: rgw
     depends_on:
       - mon
@@ -35,7 +35,7 @@ services:
     environment:
       CEPH_OPTS: --verbose
   admin:
-    image: ceph/daemon
+    image: r.deso.tech/dockerhub/ceph/daemon
     entrypoint: radosgw-admin
     depends_on:
       - mon
@@ -50,4 +50,3 @@ networks:
       config:
         - subnet: 10.33.0.0/16
           gateway: 10.33.0.1
-
